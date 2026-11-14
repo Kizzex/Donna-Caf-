@@ -3,425 +3,452 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cardápio | Donna Coffee Shop</title>
-<meta name="description" content="Cardápio completo da Donna Coffee Shop, em Caçapava-SP: cafés da casa, cafés gelados e muito mais.">
+<title>Donna Coffee Shop | Cafeteria no Centro de Caçapava</title>
+<meta name="description" content="Donna Coffee Shop, cafeteria no Centro de Caçapava-SP. Café coado na mesa (V60 e Origami), croissants, pão na chapa e muito mais. Venha conhecer.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Donna Coffee Shop | Cafeteria em Caçapava">
+<meta property="og:description" content="Café coado na sua mesa, sem pressa. Centro de Caçapava-SP.">
+<!-- Depois de hospedar, adicione: og:url e og:image (uma foto 1200x630 da cafeteria) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Donna Coffee Shop",
+  "telephone": "+55 12 97403-5515",
+  "priceRange": "R$ 20–40",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "R. Prudente de Moraes, Centro",
+    "addressLocality": "Caçapava",
+    "addressRegion": "SP",
+    "postalCode": "12281-640",
+    "addressCountry": "BR"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root { --accent:#8A4B2A; --cream:#FBF5EC; --sand:#F1E6D3; --dark:#2B1B12; --muted:#5A4334; --line:#E8DCCB; }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin:0; background:var(--cream); color:var(--dark); font-family:'DM Sans',sans-serif; }
-  a { text-decoration:none; }
-  h1,h2,h3 { font-family:'Fraunces',Georgia,serif; margin:0; }
-  .container { max-width:900px; margin:0 auto; padding:0 24px; }
-
-  .barra { position:sticky; top:0; z-index:10; background:var(--cream); border-bottom:1px solid var(--line); }
-  .topo { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:12px; }
-  .logo { font-family:'Fraunces',Georgia,serif; font-size:24px; font-weight:600; color:var(--accent); }
-  .voltar { color:var(--dark); font-weight:500; }
-  .chips { display:flex; flex-wrap:wrap; gap:10px; padding-bottom:14px; }
-  .chips a { padding:8px 18px; border-radius:999px; border:2px solid var(--accent); color:var(--accent); font-weight:700; font-size:15px; }
-  .chips a:hover { background:var(--accent); color:#FFF8EF; }
-
-  .titulo { padding-top:56px; padding-bottom:16px; }
-  .titulo h1 { font-size:clamp(38px,6vw,64px); font-weight:600; line-height:1.05; }
-  .titulo p { font-size:18px; color:var(--muted); margin:16px 0 0; }
-
-  .categoria { padding-top:48px; scroll-margin-top:130px; }
-  .categoria h2 { font-size:clamp(28px,4vw,40px); font-weight:500; padding-bottom:12px; border-bottom:2px solid var(--accent); }
-  .lista { list-style:none; margin:0; padding:0; }
-  .item { display:flex; gap:24px; align-items:baseline; justify-content:space-between; padding:20px 0; border-bottom:1px solid var(--line); }
-  .item h3 { font-size:21px; font-weight:600; }
-  .item p { margin:6px 0 0; color:var(--muted); line-height:1.5; font-size:16px; max-width:620px; }
-  .valor { font-weight:700; color:var(--accent); white-space:nowrap; font-size:18px; }
-
-  .aviso { margin:56px 0 0; padding:20px 24px; background:var(--sand); border-radius:16px; color:var(--muted); line-height:1.5; }
-  .acoes { display:flex; flex-wrap:wrap; gap:14px; margin:40px 0 72px; }
-  .btn { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 26px; border-radius:999px; font:700 16px 'DM Sans',sans-serif; }
-  .btn-cheio { background:var(--accent); color:#FFF8EF; }
-  .btn-borda { border:2px solid var(--accent); color:var(--accent); }
-  footer { background:var(--dark); color:var(--cream); padding:32px 24px; text-align:center; font-size:15px; }
-  @media (max-width:520px) { .item { flex-direction:column; gap:8px; } }
-
-  .dir { display:flex; align-items:center; gap:16px; flex-shrink:0; }
-  .add, .stepper button, .modal button.sec {
-    font:700 15px 'DM Sans',sans-serif; cursor:pointer;
+  :root {
+    --accent: #8A4B2A;
+    --cream: #FBF5EC;
+    --sand: #F1E6D3;
+    --dark: #2B1B12;
+    --muted: #5A4334;
+    --line: #E8DCCB;
   }
-  .add { min-height:44px; padding:0 20px; border-radius:999px; border:2px solid var(--accent); background:transparent; color:var(--accent); }
-  .add:hover { background:var(--accent); color:#FFF8EF; }
-  .stepper { display:inline-flex; align-items:center; gap:4px; background:var(--accent); color:#FFF8EF; border-radius:999px; padding:2px; }
-  .stepper button { width:40px; height:40px; border-radius:50%; border:0; background:transparent; color:#FFF8EF; font-size:20px; }
-  .stepper span { min-width:24px; text-align:center; font-weight:700; }
 
-  .barra-pedido { position:fixed; left:16px; right:16px; bottom:16px; z-index:30; max-width:560px; margin:0 auto;
-    display:none; align-items:center; justify-content:space-between; gap:12px; padding:14px 22px; border:0; border-radius:999px;
-    background:var(--dark); color:var(--cream); font:700 16px 'DM Sans',sans-serif; cursor:pointer; box-shadow:0 10px 30px rgba(0,0,0,.3); }
-  .barra-pedido.aberta { display:flex; }
-  body.tem-itens footer { padding-bottom:96px; }
+  * { box-sizing: border-box; }
 
-  .fundo { position:fixed; inset:0; z-index:40; background:rgba(43,27,18,.55); display:none; align-items:flex-end; justify-content:center; }
-  .fundo.aberto { display:flex; }
-  .modal { background:var(--cream); width:100%; max-width:560px; max-height:92vh; overflow-y:auto; border-radius:24px 24px 0 0; padding:24px; }
-  @media (min-width:600px) { .fundo { align-items:center; } .modal { border-radius:24px; } }
-  .modal h2 { font-size:28px; border:0; padding:0; margin:0 0 4px; }
-  .modal .fechar { float:right; background:none; border:0; font-size:28px; line-height:1; cursor:pointer; color:var(--dark); }
-  .linha { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); }
-  .linha .nome { font-weight:500; }
-  .linha .sub { color:var(--accent); font-weight:700; white-space:nowrap; }
-  .total { display:flex; justify-content:space-between; font-size:20px; font-weight:700; padding:16px 0 4px; }
-  .nota-entrega { color:var(--muted); font-size:14px; margin:0 0 8px; }
-  .modal label { display:block; font-weight:700; margin:16px 0 6px; }
-  .modal input[type=text], .modal select, .modal textarea { width:100%; font:400 16px 'DM Sans',sans-serif; padding:12px 14px; border:2px solid var(--line); border-radius:12px; background:#fff; color:var(--dark); }
-  .modal input:focus, .modal select:focus, .modal textarea:focus { outline:none; border-color:var(--accent); }
-  .opcoes { display:flex; flex-wrap:wrap; gap:10px; }
-  .opcoes label { margin:0; font-weight:500; display:flex; align-items:center; gap:8px; padding:10px 16px; border:2px solid var(--line); border-radius:999px; cursor:pointer; background:#fff; }
-  .opcoes input { accent-color:var(--accent); }
-  .erro { color:#A12A1B; font-weight:700; margin:12px 0 0; min-height:1.2em; }
-  .enviar { width:100%; margin-top:12px; min-height:52px; border:0; border-radius:999px; background:var(--accent); color:#FFF8EF; font:700 17px 'DM Sans',sans-serif; cursor:pointer; }
-  .demo { text-align:center; color:var(--muted); font-size:13px; margin:12px 0 0; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  a { text-decoration: none; }
+
+  h1, h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  h2 { font-size: clamp(32px, 4.5vw, 52px); line-height: 1.1; }
+
+  /* Container central: TUDO que deve alinhar fica dentro dele */
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Botões */
+  .botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 26px;
+    border-radius: 999px;
+    font: 700 16px 'DM Sans', sans-serif;
+  }
+
+  .btn-cheio { background: var(--accent); color: #FFF8EF; }
+  .btn-borda { border: 2px solid var(--accent); color: var(--accent); }
+
+  /* Topo */
+  .topo {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .menu { display: flex; flex-wrap: wrap; gap: 24px; font-weight: 500; }
+  .menu a { color: var(--dark); }
+
+  /* Hero */
+  .hero { padding-top: 72px; padding-bottom: 88px; }
+
+  .etiqueta {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .hero h1 {
+    font-weight: 600;
+    font-size: clamp(40px, 7vw, 84px);
+    line-height: 1.05;
+    margin: 20px 0 24px;
+    max-width: 820px;
+  }
+
+  .hero p {
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 0 36px;
+  }
+
+  .nota { margin-top: 40px; color: var(--muted); }
+
+  /* Sobre */
+  .sobre { background: var(--dark); color: var(--cream); padding: 88px 0; }
+
+  .grade-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 48px;
+    align-items: start;
+  }
+
+  .sobre p { font-size: 18px; line-height: 1.7; margin: 0 0 20px; }
+
+  /* Cardápio */
+  .cardapio { padding: 24px 0 88px; }
+  .botoes-cardapio { margin-top: 40px; }
+  .cardapio .sub { font-size: 18px; color: var(--muted); margin: 12px 0 40px; }
+
+  .grade-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px;
+  }
+
+  .card h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .card p { margin: 10px 0 18px; color: var(--muted); line-height: 1.5; }
+  .preco { font-weight: 700; color: var(--accent); }
+
+  /* Avaliações */
+  .avaliacoes { background: var(--sand); padding: 88px 0; }
+  .avaliacoes h2 { margin-bottom: 40px; }
+
+  .depoimento {
+    margin: 0;
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 28px;
+  }
+
+  .depoimento blockquote { margin: 0 0 18px; font-size: 19px; line-height: 1.55; }
+  .depoimento figcaption { font-weight: 700; color: var(--accent); }
+  .fonte { margin: 28px 0 0; color: var(--muted); }
+
+  /* Visite */
+  .visite { padding: 88px 0; }
+  .visite h2 { margin-bottom: 40px; }
+
+  .info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .info strong { display: block; color: var(--accent); margin-bottom: 8px; }
+  .visite .botoes { margin-top: 40px; }
+
+  /* Rodapé */
+  footer {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  /* Rolagem suave */
+  html { scroll-behavior: smooth; }
+
+  /* Animações de entrada (a classe .reveal é adicionada pelo JavaScript) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+    transition-delay: var(--delay, 0ms);
+  }
+  .reveal.visivel { opacity: 1; transform: none; }
+
+  .card, .btn { transition: transform .25s ease, box-shadow .25s ease; }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(43,27,18,.12); }
+  .btn:hover { transform: translateY(-2px); }
+
+  /* Topo fixo com sombra ao rolar */
+  .barra { position: sticky; top: 0; z-index: 10; background: var(--cream); transition: box-shadow .3s ease; }
+  .barra.rolou { box-shadow: 0 4px 18px rgba(43,27,18,.12); }
+
+  /* Aviso de cookies */
+  .cookies {
+    position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 20;
+    max-width: 640px; margin: 0 auto;
+    background: var(--dark); color: var(--cream);
+    border-radius: 16px; padding: 20px 24px;
+    display: none; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    font-size: 15px; line-height: 1.5;
+  }
+  .cookies.aberto { display: flex; }
+  .cookies p { margin: 0; flex: 1 1 260px; }
+  .cookies .acoes { display: flex; gap: 10px; }
+  .cookies button {
+    min-height: 44px; padding: 0 20px; border-radius: 999px; cursor: pointer;
+    font: 700 15px 'DM Sans', sans-serif;
+  }
+  .cookies .aceitar { background: #F1E6D3; color: var(--dark); border: 2px solid #F1E6D3; }
+  .cookies .recusar { background: transparent; color: var(--cream); border: 2px solid var(--cream); }
+
+  /* Respeita quem prefere menos movimento */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .card, .btn { transition: none; }
+  }
 </style>
 </head>
 <body>
-  <div class="barra">
-    <div class="container topo">
-      <a class="logo" href="inicio.html">Donna Coffee Shop</a>
-      <a class="voltar" href="inicio.html">← Voltar ao site</a>
-    </div>
-    <nav class="container chips" aria-label="Categorias do cardápio">
-      <a href="#cafe-da-casa">Café da Casa</a>
-      <a href="#cafe-gelado">Café Gelado</a>
+
+  <div class="barra" id="barra">
+  <header class="container topo">
+    <div class="logo">Donna Coffee Shop</div>
+    <nav class="menu">
+      <a href="#sobre">Sobre</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#visite">Visite</a>
     </nav>
+  </header>
   </div>
 
-  <main class="container">
-    <div class="titulo">
-      <h1>Cardápio</h1>
-      <p>Cafés da casa, gelados e muito mais, preparados na hora.</p>
-    </div>
-
-    <section class="categoria" id="cafe-da-casa">
-      <h2>Café da Casa</h2>
-      <ul class="lista">
-        <li class="item" data-id="1" data-nome="Café Coado Hario V60" data-cents="1090">
-          <div class="txt"><h3>Café Coado Hario V60</h3><p>Café em grãos moído, adicionado no filtro V60, coado com água quente, 120 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 10,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="2" data-nome="Café Coado Origami" data-cents="1090">
-          <div class="txt"><h3>Café Coado Origami</h3><p>Café em grãos moído, adicionado no filtro Origami, coado com água quente, 120 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 10,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="3" data-nome="Café Coado Pano" data-cents="1190">
-          <div class="txt"><h3>Café Coado Pano</h3><p>Café em grãos moído, adicionado no filtro de pano, coado com água quente, 120 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 11,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="4" data-nome="Café Coado Prensa Francesa" data-cents="990">
-          <div class="txt"><h3>Café Coado Prensa Francesa</h3><p>Café em grão moído na prensa francesa, adicionado água quente.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 9,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="5" data-nome="Café Expresso Simples" data-cents="890">
-          <div class="txt"><h3>Café Expresso Simples</h3><p>Café especial 100% arábico com notas de chocolate ao leite e castanhas, 40 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 8,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="6" data-nome="Café Expresso Carioca Simples" data-cents="890">
-          <div class="txt"><h3>Café Expresso Carioca Simples</h3><p>Café especial 100% arábico com notas de chocolate ao leite e castanhas, com jato de água quente, 60 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 8,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="7" data-nome="Café Carioca Duplo" data-cents="1190">
-          <div class="txt"><h3>Café Carioca Duplo</h3><p>Café especial 100% arábico com notas de chocolate ao leite e castanhas, com um jato de água quente, 90 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 11,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="8" data-nome="Café Expresso Ristretto" data-cents="900">
-          <div class="txt"><h3>Café Expresso Ristretto</h3><p>Café especial 100% arábico com notas de chocolate ao leite e castanhas, 40 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 9,00</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="9" data-nome="Café Pingado Simples" data-cents="1000">
-          <div class="txt"><h3>Café Pingado Simples</h3><p>Café especial 100% arábico com notas de chocolate ao leite e castanhas, adicionado leite vaporizado, 90 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 10,00</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="10" data-nome="Café Pingado Duplo" data-cents="1290">
-          <div class="txt"><h3>Café Pingado Duplo</h3></div>
-        
-          <div class="dir"><div class="valor">R$ 12,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="11" data-nome="Expresso Simples Panna" data-cents="1290">
-          <div class="txt"><h3>Expresso Simples Panna</h3></div>
-        
-          <div class="dir"><div class="valor">R$ 12,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="12" data-nome="Expresso Duplo Panna" data-cents="1490">
-          <div class="txt"><h3>Expresso Duplo Panna</h3></div>
-        
-          <div class="dir"><div class="valor">R$ 14,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="13" data-nome="Macchiato Simples" data-cents="990">
-          <div class="txt"><h3>Macchiato Simples</h3><p>Café expresso com espuma do leite vaporizado, 60 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 9,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="14" data-nome="Macchiato Duplo" data-cents="1290">
-          <div class="txt"><h3>Macchiato Duplo</h3><p>Café expresso com espuma cremosa do leite.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 12,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="15" data-nome="Café Pistache" data-cents="1890">
-          <div class="txt"><h3>Café Pistache</h3><p>Café expresso com leite vaporizado, creme de pistache, 160 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 18,90</div><div class="qtd-area"></div></div>
-        </li>
-      </ul>
-    </section>
-
-    <section class="categoria" id="cafe-gelado">
-      <h2>Café Gelado</h2>
-      <ul class="lista">
-        <li class="item" data-id="16" data-nome="Coffee Ice" data-cents="1590">
-          <div class="txt"><h3>Coffee Ice</h3><p>200 ml de café coado na prensa francesa e gelo.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 15,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="17" data-nome="Frapé" data-cents="2490">
-          <div class="txt"><h3>Frapé</h3><p>Café expresso gelado, sorvete de creme e leite condensado. Escolha o sabor: morango, ovomaltine, nutella ou chocolate.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 24,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="18" data-nome="Expresso Tônica" data-cents="1890">
-          <div class="txt"><h3>Expresso Tônica</h3><p>Café expresso simples, água tônica e gelo, 250 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 18,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="19" data-nome="Affogato" data-cents="1990">
-          <div class="txt"><h3>Affogato</h3><p>Café expresso simples e sorvete de creme, 200 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 19,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="20" data-nome="Ice Expresso Alfredo" data-cents="1590">
-          <div class="txt"><h3>Ice Expresso Alfredo</h3><p>Café expresso vaporizado no gelo, com muito gelo, 240 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 15,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="21" data-nome="Donna Coffee Honey Ice" data-cents="1990">
-          <div class="txt"><h3>Donna Coffee Honey Ice</h3><p>Café expresso simples, mel, gelo e espuma do leite, 150 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 19,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="22" data-nome="Orange Coffee Ice" data-cents="2090">
-          <div class="txt"><h3>Orange Coffee Ice</h3><p>Expresso simples, suco de laranja e gelo, 250 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 20,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="23" data-nome="Limoned Coffee Ice" data-cents="2090">
-          <div class="txt"><h3>Limoned Coffee Ice</h3><p>Expresso simples, soda, suco de limão e gelo, 250 ml.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 20,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="24" data-nome="Café Bombom Ice" data-cents="1890">
-          <div class="txt"><h3>Café Bombom Ice</h3><p>Leite condensado, café expresso, leite integral gelado e espuma do leite.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 18,90</div><div class="qtd-area"></div></div>
-        </li>
-        <li class="item" data-id="25" data-nome="Donna Coffee Crema" data-cents="2090">
-          <div class="txt"><h3>Donna Coffee Crema</h3><p>Leite integral vaporizado, café expresso, mel, gelo e um cremoso creme de café gelado.</p></div>
-        
-          <div class="dir"><div class="valor">R$ 20,90</div><div class="qtd-area"></div></div>
-        </li>
-      </ul>
-    </section>
-
-    <div class="aviso">Cardápio em atualização: novas categorias serão adicionadas em breve. Os preços podem sofrer alteração.</div>
-
-    <div class="acoes">
+  <section class="container hero">
+    <div class="etiqueta">Cafeteria · Centro de Caçapava</div>
+    <h1>Café coado na sua mesa, sem pressa.</h1>
+    <p>Ambiente aconchegante, atendimento acolhedor e um cardápio com cafés, doces e salgados para qualquer hora do dia.</p>
+    <div class="botoes">
       <a class="btn btn-cheio" rel="noopener noreferrer" href="https://wa.me/5512988496792">Falar no WhatsApp</a>
+      <a class="btn btn-borda" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Donna+Coffee+Shop+Ca%C3%A7apava+SP">Como chegar</a>
     </div>
-  </main>
+    <div class="nota">4,4 de nota no Google · 13 avaliações · R$ 20–40 por pessoa</div>
+  </section>
 
-  <footer>Donna Coffee Shop · R. Prudente de Moraes, Centro · Caçapava – SP</footer>
-
-  <button class="barra-pedido" id="barraPedido" type="button">
-    <span id="barraQtd">0 itens</span><span>Ver pedido · <span id="barraTotal">R$ 0,00</span></span>
-  </button>
-
-  <div class="fundo" id="fundo">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloPedido">
-      <button class="fechar" id="fechar" type="button" aria-label="Fechar">×</button>
-      <h2 id="tituloPedido">Seu pedido</h2>
-      <div id="listaPedido"></div>
-      <div class="total"><span>Subtotal</span><span id="subtotal">R$ 0,00</span></div>
-      <p class="nota-entrega">Taxa de entrega informada pela cafeteria no WhatsApp.</p>
-
-      <label for="nome">Seu nome</label>
-      <input type="text" id="nome" autocomplete="name">
-
-      <label>Como quer receber?</label>
-      <div class="opcoes" id="tipos">
-        <label><input type="radio" name="tipo" value="Entrega" checked> Entrega</label>
-        <label><input type="radio" name="tipo" value="Retirada na porta"> Retirada</label>
-        <label><input type="radio" name="tipo" value="Consumir no local"> No local</label>
+    <section class="cardapio" id="cardapio">
+    <div class="container">
+      <h2>Nosso cardápio</h2>
+      <p class="sub">Alguns dos cafés que você encontra por aqui.</p>
+      <div class="grade-cards">
+        <div class="card">
+          <h3>Café Coado Hario V60</h3>
+          <p>Coado na hora no filtro V60, 120 ml.</p>
+          <div class="preco">R$ 10,90</div>
+        </div>
+        <div class="card">
+          <h3>Café Coado Origami</h3>
+          <p>Coado na hora no filtro Origami, 120 ml.</p>
+          <div class="preco">R$ 10,90</div>
+        </div>
+        <div class="card">
+          <h3>Café Pistache</h3>
+          <p>Café expresso com leite vaporizado e creme de pistache, 160 ml.</p>
+          <div class="preco">R$ 18,90</div>
+        </div>
+        <div class="card">
+          <h3>Frapé</h3>
+          <p>Café expresso gelado, sorvete de creme e leite condensado.</p>
+          <div class="preco">R$ 24,90</div>
+        </div>
+        <div class="card">
+          <h3>Affogato</h3>
+          <p>Café expresso simples e sorvete de creme, 200 ml.</p>
+          <div class="preco">R$ 19,90</div>
+        </div>
+        <div class="card">
+          <h3>Donna Coffee Honey Ice</h3>
+          <p>Café expresso simples, mel, gelo e espuma do leite, 150 ml.</p>
+          <div class="preco">R$ 19,90</div>
+        </div>
       </div>
-
-      <div id="blocoEndereco">
-        <label for="endereco">Endereço de entrega</label>
-        <input type="text" id="endereco" autocomplete="street-address" placeholder="Rua, número, bairro e complemento">
+      <div class="botoes botoes-cardapio">
+        <a class="btn btn-cheio" href="cardapio.html">Ver cardápio completo</a>
+        <a class="btn btn-borda" href="cardapio.html#cafe-da-casa">Fazer pedido</a>
       </div>
+    </div>
+  </section>
 
-      <label for="pagamento">Forma de pagamento</label>
-      <select id="pagamento">
-        <option>Pix</option>
-        <option>Cartão de crédito</option>
-        <option>Cartão de débito</option>
-        <option>Dinheiro</option>
-      </select>
+  <section class="sobre" id="sobre">
+    <div class="container grade-2">
+      <h2>Um lugar para parar e provar com calma.</h2>
+      <div>
+        <p>Na Donna você escolhe o método de extração e o café é preparado na própria mesa, em V60 ou Origami.</p>
+        <p>Para acompanhar, croissants, pão na chapa, ovos mexidos e o clássico pão de queijo. [ESCREVA AQUI A HISTÓRIA DA DONNA EM 1 OU 2 FRASES]</p>
+      </div>
+    </div>
+  </section>
+  <section class="avaliacoes" id="avaliacoes">
+    <div class="container">
+      <h2>Quem já veio, recomenda.</h2>
+      <div class="grade-cards">
+        <figure class="depoimento">
+          <blockquote>“Ambiente aconchegante e atendimento superacolhedor e atencioso.”</blockquote>
+          <figcaption>Letielly D.</figcaption>
+        </figure>
+        <figure class="depoimento">
+          <blockquote>“Lugar agradável, atendimento excelente, a bebida e o lanche muito gostosos.”</blockquote>
+          <figcaption>Sabrina S.</figcaption>
+        </figure>
+        <figure class="depoimento">
+          <blockquote>“Experimentamos o V60 e o Origami, preparados na nossa mesa.”</blockquote>
+          <figcaption>Karen M.</figcaption>
+        </figure>
+      </div>
+      <p class="fonte">Avaliações do Google · nota 4,4</p>
+    </div>
+  </section>
 
-      <label for="obs">Observações (opcional)</label>
-      <textarea id="obs" rows="2"></textarea>
+  <section class="container visite" id="visite">
+    <h2>Venha tomar um café.</h2>
+    <div class="info">
+      <div>
+        <strong>Endereço</strong>
+        R. Prudente de Moraes, Centro<br>Caçapava – SP, 12281-640
+      </div>
+      <div>
+        <strong>Horários</strong>
+        [CONFIRME OS HORÁRIOS, INCLUSIVE AOS SÁBADOS]
+      </div>
+      <div>
+        <strong>Contato</strong>
+        WhatsApp: (12) 97403-5515<br>Refeição no local · Retirada na porta · Pedidos on-line
+      </div>
+    </div>
+    <div class="botoes">
+      <a class="btn btn-cheio" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Donna+Coffee+Shop+Ca%C3%A7apava+SP">Abrir rota no Google Maps</a>
+    </div>
+  </section>
 
-      <p class="erro" id="erro" role="alert"></p>
-      <button class="enviar" id="enviar" type="button">Enviar pedido pelo WhatsApp</button>
-      <p class="demo">Ao enviar, o WhatsApp da cafeteria abre com o pedido pronto.</p>
+  <footer>Donna Coffee Shop · Caçapava, SP · [SEU @INSTAGRAM]</footer>
+
+  <div class="cookies" id="cookies" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+    <p>Usamos cookies para entender como o site é usado e melhorar a sua experiência. Você pode aceitar ou recusar.</p>
+    <div class="acoes">
+      <button class="recusar" id="recusar" type="button">Recusar</button>
+      <button class="aceitar" id="aceitar" type="button">Aceitar</button>
     </div>
   </div>
 
   <script>
+    // 1) Animação de entrada ao rolar a página
     (function () {
-      var WHATSAPP = '5512988496792';
-      var itens = {};            // id -> { nome, cents, qtd }
-      var $ = function (id) { return document.getElementById(id); };
+      var alvos = document.querySelectorAll(
+        '.hero > *, .grade-2 > *, .cardapio h2, .cardapio .sub, .card, .avaliacoes h2, .depoimento, .visite h2, .info > div, .visite .botoes'
+      );
+      var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduz || !('IntersectionObserver' in window)) return;
 
-      function brl(cents) {
-        return 'R$ ' + (cents / 100).toFixed(2).replace('.', ',');
-      }
-      function totais() {
-        var q = 0, t = 0;
-        Object.keys(itens).forEach(function (k) { q += itens[k].qtd; t += itens[k].qtd * itens[k].cents; });
-        return { qtd: q, total: t };
-      }
-
-      // Lê os itens do próprio cardápio (nome e preço vêm do HTML)
-      var linhas = document.querySelectorAll('.item');
-      var base = {};
-      linhas.forEach(function (li) {
-        base[li.dataset.id] = { nome: li.dataset.nome, cents: parseInt(li.dataset.cents, 10) };
-      });
-
-      function mudar(id, delta) {
-        var atual = itens[id] ? itens[id].qtd : 0;
-        var nova = Math.max(0, Math.min(20, atual + delta));
-        if (nova === 0) { delete itens[id]; }
-        else { itens[id] = { nome: base[id].nome, cents: base[id].cents, qtd: nova }; }
-        renderTudo();
-      }
-
-      function criaBotao(txt, classe, aria, fn) {
-        var b = document.createElement('button');
-        b.type = 'button'; b.textContent = txt;
-        if (classe) b.className = classe;
-        if (aria) b.setAttribute('aria-label', aria);
-        b.addEventListener('click', fn);
-        return b;
-      }
-
-      function stepper(id) {
-        var d = document.createElement('div');
-        d.className = 'stepper';
-        var n = document.createElement('span');
-        n.textContent = itens[id].qtd;
-        d.appendChild(criaBotao('−', '', 'Remover um ' + base[id].nome, function () { mudar(id, -1); }));
-        d.appendChild(n);
-        d.appendChild(criaBotao('+', '', 'Adicionar um ' + base[id].nome, function () { mudar(id, 1); }));
-        return d;
-      }
-
-      function renderCardapio() {
-        linhas.forEach(function (li) {
-          var id = li.dataset.id, area = li.querySelector('.qtd-area');
-          area.textContent = '';
-          if (itens[id]) { area.appendChild(stepper(id)); }
-          else { area.appendChild(criaBotao('Adicionar', 'add', 'Adicionar ' + base[id].nome, function () { mudar(id, 1); })); }
+      var obs = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visivel');
+            obs.unobserve(e.target);
+          }
         });
-      }
+      }, { threshold: 0.15 });
 
-      function renderModal() {
-        var box = $('listaPedido');
-        box.textContent = '';
-        Object.keys(itens).forEach(function (id) {
-          var it = itens[id];
-          var row = document.createElement('div'); row.className = 'linha';
-          var nome = document.createElement('div'); nome.className = 'nome'; nome.textContent = it.nome;
-          var sub = document.createElement('div'); sub.className = 'sub'; sub.textContent = brl(it.cents * it.qtd);
-          var dir = document.createElement('div'); dir.className = 'dir';
-          dir.appendChild(sub); dir.appendChild(stepper(id));
-          row.appendChild(nome); row.appendChild(dir);
-          box.appendChild(row);
-        });
-        $('subtotal').textContent = brl(totais().total);
-      }
-
-      function renderBarra() {
-        var t = totais();
-        $('barraQtd').textContent = t.qtd + (t.qtd === 1 ? ' item' : ' itens');
-        $('barraTotal').textContent = brl(t.total);
-        $('barraPedido').classList.toggle('aberta', t.qtd > 0);
-        document.body.classList.toggle('tem-itens', t.qtd > 0);
-      }
-
-      function renderTudo() {
-        renderCardapio(); renderBarra();
-        if ($('fundo').classList.contains('aberto')) {
-          if (totais().qtd === 0) { fecha(); } else { renderModal(); }
-        }
-      }
-
-      function abre() { renderModal(); $('fundo').classList.add('aberto'); $('erro').textContent = ''; }
-      function fecha() { $('fundo').classList.remove('aberto'); }
-
-      $('barraPedido').addEventListener('click', abre);
-      $('fechar').addEventListener('click', fecha);
-      $('fundo').addEventListener('click', function (e) { if (e.target === $('fundo')) fecha(); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fecha(); });
-
-      function tipoAtual() { return document.querySelector('input[name="tipo"]:checked').value; }
-      $('tipos').addEventListener('change', function () {
-        $('blocoEndereco').style.display = tipoAtual() === 'Entrega' ? 'block' : 'none';
+      alvos.forEach(function (el, i) {
+        el.classList.add('reveal');
+        el.style.setProperty('--delay', (i % 3) * 120 + 'ms');
+        obs.observe(el);
       });
+    })();
 
-      $('enviar').addEventListener('click', function () {
-        var nome = $('nome').value.trim(), end = $('endereco').value.trim(), tipo = tipoAtual();
-        if (totais().qtd === 0) { $('erro').textContent = 'Adicione pelo menos um item.'; return; }
-        if (!nome) { $('erro').textContent = 'Informe o seu nome.'; $('nome').focus(); return; }
-        if (tipo === 'Entrega' && !end) { $('erro').textContent = 'Informe o endereço de entrega.'; $('endereco').focus(); return; }
+    // 2) Sombra no topo ao rolar
+    (function () {
+      var barra = document.getElementById('barra');
+      function atualiza() { barra.classList.toggle('rolou', window.scrollY > 10); }
+      window.addEventListener('scroll', atualiza, { passive: true });
+      atualiza();
+    })();
 
-        var m = [];
-        m.push('*Novo pedido - Donna Coffee Shop*', '');
-        m.push('*Nome:* ' + nome);
-        m.push('*Recebimento:* ' + tipo);
-        if (tipo === 'Entrega') m.push('*Endereço:* ' + end);
-        m.push('*Pagamento:* ' + $('pagamento').value, '');
-        m.push('*Itens:*');
-        Object.keys(itens).forEach(function (id) {
-          var it = itens[id];
-          m.push(it.qtd + 'x ' + it.nome + ' - ' + brl(it.cents * it.qtd));
-        });
-        m.push('', '*Subtotal:* ' + brl(totais().total));
-        if (tipo === 'Entrega') m.push('(taxa de entrega a combinar)');
-        var obs = $('obs').value.trim();
-        if (obs) m.push('', '*Observações:* ' + obs);
+    // 3) Aviso de cookies (a escolha fica salva no navegador)
+    (function () {
+      var chave = 'donna-cookies';
+      var aviso = document.getElementById('cookies');
+      var escolha = null;
+      try { escolha = localStorage.getItem(chave); } catch (e) {}
 
-        var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(m.join('\n'));
-        window.open(url, '_blank', 'noopener');
-      });
+      function carregarAnalytics() {
+        // Coloque aqui o código do Google Analytics / Meta Pixel.
+        // Ele só roda se a pessoa clicar em "Aceitar".
+      }
 
-      renderCardapio();
+      if (escolha === 'aceito') { carregarAnalytics(); return; }
+      if (escolha === 'recusado') return;
+
+      aviso.classList.add('aberto');
+      function responder(valor) {
+        try { localStorage.setItem(chave, valor); } catch (e) {}
+        aviso.classList.remove('aberto');
+        if (valor === 'aceito') carregarAnalytics();
+      }
+      document.getElementById('aceitar').addEventListener('click', function () { responder('aceito'); });
+      document.getElementById('recusar').addEventListener('click', function () { responder('recusado'); });
     })();
   </script>
+
 </body>
 </html>
